@@ -1,6 +1,7 @@
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { HomeComponent } from './components/home/home.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
     imports: [
@@ -113,6 +114,7 @@ import { HomeComponent } from './components/home/home.component';
             {path: 'virtualscroller', loadChildren: () => import('./components/virtualscroller/virtualscrollerdemo.module').then(m => m.VirtualScrollerDemoModule)}
         ], {scrollPositionRestoration: 'enabled'})
     ],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }]
 })
 export class AppRoutingModule {}
